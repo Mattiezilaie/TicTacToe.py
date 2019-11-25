@@ -90,7 +90,7 @@ while tic._current_state == "UNFINISHED":
 
             else:
                 print("Move is Successful")
-                tic.print_Table()
+        tic.print_Table()
     count = count + 1
 if tic.get_current_state() == "DRAW":
     print("Match is Draw")
