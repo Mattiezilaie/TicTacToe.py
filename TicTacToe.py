@@ -17,13 +17,13 @@ class TicTacToe:
     def make_move(self, row, column, player):
         if(row<0 or row>2 or column<0 or column>2):
             return False
-            if(self.board[row][column]!=''):
-                return False
-            if(self.current_state == 'X_WON' or self.current_state == 'O_WON' or self.current_state == 'DRAW'):
-                return False
-                self.board[row][column] = player
-                self.update_current_state()
-                return True
+        if(self.board[row][column]!=''):
+            return False
+        if(self.current_state == 'X_WON' or self.current_state == 'O_WON' or self.current_state == 'DRAW'):
+            return False
+        self.board[row][column] = player
+        self.update_current_state()
+        return True
     def update_current_state(self):
         if(self.board[0][0]==self.board[0][1] and self.board[0][1]==self.board[0][2] and self.board[0][2]!=''):
             if(self.board[0][0]=='x'):
