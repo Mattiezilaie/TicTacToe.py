@@ -7,56 +7,81 @@
 #values of current_state are: "X_WON", "O_WON", "DRAW", or "UNFINISHED".
 # A game is drawn when all of the squares are filled, but neither player has won.
 # and a method that prints out the board.
+
 class TicTacToe:
     def __init__(self):
-        self._board = [['','',''],['','',''],['','','']]
-        self._current_state = "UNFINISHED"
-        self._num = 0
-    def make_move(self, row, col, player):
-        if row >= 0 and row <= 2 and col >= 0 and col <= 2:
-            if self._current_state == "UNFINISHED":
-                if not self._board[row][col]:
-                    self._board[row][col]= player
-                    self._num = self._num + 1
-                    if self._board[row][0]==player and self._board[row][1]==player and self._board[row][2]==player:
-                        self._current_state = str(player) + "_Won"
-                    elif self._board[0][col] == player and self._board[1][col] == player and self._board[2][col] == player:
-                        self._current_state = str(player) + "_Won"
-                    elif self._board[0][0] == player and self._board[1][1] == player and self._board[2][2] == player:
-                        self._current_state = str(player) + "_Won"
-                    elif self._board[0][2] == player and self._board[1][1] == player and self._board[2][0] == player:
-                        self._current_state = str(player) + "_Won"
-                    else:
-                        if self._num == 9 and self._current_state == "UNFINISHED":
-                            self._current_state = "DRAW"
-                        elif tic.get_current_state() == "X_Won":
-                            print("Player X Won the Match")
-                        else:
-                            tic.get_current_state() == "O_Won"
-                            print("Player O Won the Match")
-                    return True;
-
-                    return False;
-
-                return False;
-
-            return False;
-
-
+        self.board = [['', '', ''], ['', '', ''], ['', '', '']]
+        self.current_state = 'UNFINISHED'
     def get_current_state(self):
-        return self._current_state
+        return self.current_state
+    def make_move(self, row, column, player):
+        if(row<0 or row>2 or column<0 or column>2):
+            return False
+            if(self.board[row][column]!=''):
+                return False
+            if(self.current_state == 'X_WON' or self.current_state == 'O_WON' or self.current_state == 'DRAW'):
+                return False
+                self.board[row][column] = player
+                self.update_current_state()
+                return True
+    def update_current_state(self):
+        if(self.board[0][0]==self.board[0][1] and self.board[0][1]==self.board[0][2] and self.board[0][2]!=''):
+            if(self.board[0][0]=='x'):
+                self.current_state = 'X_WON'
+            else:
+                self.current_state = 'O_WON'
+        elif(self.board[1][0]==self.board[1][1] and self.board[1][1]==self.board[1][2] and self.board[1][2]!=''):
+            if(self.board[1][0]=='x'):
+                self.current_state = 'X_WON'
+            else:
+                self.current_state = 'O_WON'
+        elif(self.board[2][0]==self.board[2][1] and self.board[2][1]==self.board[2][2] and self.board[2][2]!=''):
+            if(self.board[2][0]=='x'):
+                self.current_state = 'X_WON'
+            else:
+                self.current_state = 'O_WON'
+        elif(self.board[0][0]==self.board[1][0] and self.board[1][0]==self.board[2][0] and self.board[2][0]!=''):
+            if(self.board[0][0]=='x'):
+                self.current_state = 'X_WON'
+            else:
+                self.current_state = 'O_WON'
 
-
-    def print_Table(self):
-        print("\nPresent Status of TicTacToe board is : \n")
-        l = "   0   1   2"
-        count=0
-        print(l)
-        for i in self._board:
-            print(str(count)+str(i))
-            count=count+1
-            print()
-
-tic = TicTacToe()
-
-
+        elif(self.board[0][1]==self.board[1][1] and self.board[1][1]==self.board[2][1] and self.board[2][1]!=''):
+             if(self.board[0][1]=='x'):
+                 self.current_state = 'X_WON'
+             else:
+                 self.current_state = 'O_WON'
+        elif(self.board[0][2]==self.board[1][2] and self.board[1][2]==self.board[2][2] and self.board[2][2]!=''):
+             if(self.board[0][2]=='x'):
+                 self.current_state = 'X_WON'
+             else:
+                 self.current_state = 'O_WON'
+        elif(self.board[0][0]==self.board[1][1] and self.board[1][1]==self.board[2][2] and self.board[2][2]!=''):
+             if(self.board[0][0]=='x'):
+                 self.current_state = 'X_WON'
+             else:
+                 self.current_state = 'O_WON'
+        elif(self.board[0][2]==self.board[1][1] and self.board[1][1]==self.board[2][0] and self.board[2][0]!=''):
+             if(self.board[0][2]=='x'):
+                 self.current_state = 'X_WON'
+             else:
+                 self.current_state = 'O_WON'
+        else:
+                flag = 0
+                for i in range(3):
+                 for j in range(3):
+                     if(self.board[i][j]==''):
+                         flag = 1
+                         break
+                 if(flag==0):
+                     self.current_state = 'DRAW'
+                 else:
+                     self.current_state = 'UNFINISHED'
+    def print_board(self):
+         for i in range(3):
+             for j in range(3):
+                 if(self.board[i][j]==''):
+                     print(' ', end = ' ')
+                 else:
+                     print(self.board[i][j], end = ' ')
+             print("\n")
