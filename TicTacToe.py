@@ -29,12 +29,17 @@ class TicTacToe:
                     else:
                         if self._num == 9 and self._current_state == "UNFINISHED":
                             self._current_state = "DRAW"
+                        elif tic.get_current_state() == "X_Won":
+                            print("Player X Won the Match")
+                        else:
+                            tic.get_current_state() == "O_Won"
+                            print("Player O Won the Match")
                     return True;
-                else:
+
                     return False;
-            else:
+
                 return False;
-        else:
+
             return False;
 
 
@@ -51,4 +56,6 @@ class TicTacToe:
             print(str(count)+str(i))
             count=count+1
             print()
+
 tic = TicTacToe()
+
